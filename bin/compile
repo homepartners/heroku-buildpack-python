@@ -149,6 +149,9 @@ if [[ $BUILD_DIR != '/app' ]]; then
     # Note: .heroku/src is copied in later.
 fi
 
+# Install FreeTDS
+source "$BIN_DIR/steps/freetds"
+
 # Install Python.
 let start=$(nowms)
 # shellcheck source=bin/steps/python
