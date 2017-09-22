@@ -40,6 +40,19 @@ if [ ! -f $CACHE_DIR/.vendor/freetds-version ]; then
       make | indent
       make install | indent
 
+      puts-step "Fetching unixODBC"
+      mkdir $CACHE_DIR/.vendor/unixodbc
+      mkdir $BUILD_DIR/.vendor/unixodbc
+      cd $CACHE_DIR/.vendor/unixodbc
+      curl -O http://www.unixodbc.org/unixODBC-2.3.4.tar.gz > /dev/null 2>&1
+      tar -xzf unixODBC-2.3.4.tar.gz
+      cp -r $CACHE_DIR/.vendor/unixODBC-2.3.4 $BUILD_DIR/.vendor/unixodbc
+      cd $BUILD_DIR/.vendor/unixodbc
+
+      puts-step "Installing unixODBC"
+      ./configure --prefix=$BUILD_DIR | indent
+      make | indent
+      make install | indent
 
       echo "0.91" > $CACHE_DIR/.vendor/freetds-version
 
