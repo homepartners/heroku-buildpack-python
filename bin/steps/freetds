@@ -40,9 +40,6 @@ if [ ! -f $CACHE_DIR/.vendor/freetds-version ]; then
       make | indent
       make install | indent
 
-      export PYMSSQL_BUILD_WITH_BUNDLED_FREETDS="Y"
-      puts-step "Installing pymssql with pip"
-      pip install pymssql==2.1.0 | indent
 
       echo "0.91" > $CACHE_DIR/.vendor/freetds-version
 
